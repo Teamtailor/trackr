@@ -1,4 +1,5 @@
 Trackr::Application.routes.draw do
-  resources :reports, :only => [:create, :show], :format => false
+  post '/reports' => 'reports#create'
+  get  '/reports/:domain' => 'reports#show', :domain => /.*/, :format => false
   root :to => 'signups#index'
 end
