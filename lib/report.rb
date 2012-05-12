@@ -3,10 +3,10 @@ require 'open-uri'
 class Report
   ENDPOINT = Rails.env.production? ? "http://startuphack.herokuapp.com" : "http://localhost:3000"
 
-  attr_accessor :id
+  attr_accessor :domain
 
-  def initialize(id)
-    self.id = id
+  def initialize(domain)
+    self.domain = domain
   end
 
   def exist?
@@ -19,6 +19,6 @@ class Report
 
   private
   def site_endpoint
-    ENDPOINT << "/api/sites/#{self.id}"
+    ENDPOINT << "/api/sites/#{self.domain}"
   end
 end
