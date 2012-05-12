@@ -4,6 +4,7 @@ gem 'rails', '3.2.3'
 gem 'heroku'
 gem 'pg'
 gem 'lazy_high_charts'
+gem 'unicorn'
 
 group :development do
   gem 'sqlite3'
