@@ -1,5 +1,4 @@
 Trackr::Application.routes.draw do
-  post '/reports' => 'reports#create'
-  get  '/reports/:domain' => 'reports#show', domain: /.*/, format: false
+  resources :reports, only: [:create, :show], id: /[^\/]+/, format: false
   root to: 'signups#index'
 end
