@@ -1,3 +1,28 @@
 // Place all the styles related to the reports controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+$color: #BF3F5F;
+
+body {
+  background: #DFDFDF;
+}
+
+header.bigass h1 {
+  color: $color;
+}
+
+h1 {
+  text-align: center;
+}
+
+h1 em {
+  font-style: normal;
+  color: $color;
+}
+
+#online {
+  font-size: 180px;
+  line-height: 0.8em;
+  color: $color;
+}

@@ -1,7 +1,5 @@
-<h1>
-    <%= @report.domain %>
-</h1>
-<p>Online right now: <span id="online"><%= @report.online %></span></p>
+
+<h1><span id="online"><%= @report.online %></span><br/> Online on <em><%= @report.domain %></em> right now</h1>
 
 <div id="chart" data-since="<%= @report.history.first.first %>"> </div>
 
@@ -11,6 +9,18 @@
     online = $("#online");
     new Highcharts.Chart({
       chart: {
+        backgroundColor: '#DFDFDF',
+        borderColor: '#DFDFDF',
+        borderWidth: 0,
+        plotBorderWidth: 0,
+        animation: {
+                    duration: 1000
+        },
+        borderWidth: 0,
+        borderRadius: 15,
+        plotBackgroundColor: null,
+        plotShadow: false,
+        plotBorderWidth: 0,
         renderTo: 'chart',
         type: 'spline',
         events: {
@@ -30,13 +40,53 @@
           }
         }
       },
+      plotOptions: {
+        spline: {
+          color: '#BF3F5F',
+          shadow: false,
+          lineWidth: 5,
+          marker: {
+            enabled: false
+          }
+        }
+      },
+      title: {
+        text: null
+      },
+      legend:{
+        enabled: false
+      },
+      credits: {
+        enabled: false
+      },
       series: [{
         name: 'Online',
         data: <%= @report.history[0,48].reverse.map{|i| [i.first*1000, i.last]} %>
       }],
       xAxis: {
+        gridLineWidth: 0,
+        gridLineColor: '#BF3F5F',
         type: 'datetime',
-        tickPixelInterval: 150
+        tickPixelInterval: 150,
+        lineWidth: 0,
+        tickWidth: 0,
+        labels: {
+          enabled: false
+        },
+        title: {
+          text: null
+        }
+
+      },
+      yAxis: {
+        gridLineColor: '#BF3F5F',
+        gridLineWidth: 0,
+        labels: {
+          enabled: false
+        },
+        title: {
+          text: null
+        }
       }
 
     });
