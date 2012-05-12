@@ -1,4 +1,4 @@
 Trackr::Application.routes.draw do
-  resources :reports, :only => [:index]
+  resources :reports, :only => [:show]
   root :to => 'signups#index'
 end
