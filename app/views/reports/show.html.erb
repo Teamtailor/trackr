@@ -1,23 +1,44 @@
 <h1>
     <%= @report.domain %>
 </h1>
-<p>Online right now: <%= @report.online %></p>
+<p>Online right now: <span id="online"><%= @report.online %></span></p>
 
-<div id="chart"> </div>
+<div id="chart" data-since="<%= @report.history.first.first %>"> </div>
 
 <script type="text/javascript" charset="utf-8">
   $(function () {
+    chart = $("#chart");
+    online = $("#online");
     new Highcharts.Chart({
-      chart: { renderTo: 'chart' },
+      chart: {
+        renderTo: 'chart',
+        type: 'spline',
+        events: {
+          load: function() {
+            var series = this.series[0];
+            setInterval(function() {
+              $.get('<%= report_history_path(:report_id => @report.domain) %>' +'?since='+ chart.data('since'), function(data){
+                if (data.length > 0) {
+                  chart.data('since', data[0][0]);
+                  online.text(data[0][1]);
+                };
+                for (var i = data.length - 1; i >= 0; i--) {
+                  series.addPoint([data[i][0]*1000, data[i][1]], true, true);
+                };
+              });
+            }, 2000);
+          }
+        }
+      },
       series: [{
-        // pointInterval: <%= 240.seconds * 1000 %>,
-        // pointStart: <%= 1.hour.ago.to_i * 1000 %>,
         name: 'Online',
-        data: <%= @report.history[0,48].reverse.map(&:last) %>
+        data: <%= @report.history[0,48].reverse.map{|i| [i.first*1000, i.last]} %>
       }],
-      xAxis:{
-          categories: <%= raw @report.history[0,48].reverse.map(&:first).map{|i| Time.at(i).to_s(:time) } %>
+      xAxis: {
+        type: 'datetime',
+        tickPixelInterval: 150
       }
+
     });
   });
 </script>
