@@ -11,11 +11,11 @@ class Report
   end
 
   def exist?
-    history.map(&:last).any?(&:nonzero?)
+    api && history.map(&:last).any?(&:nonzero?)
   end
 
   def api
-    JSON.parse(open(site_endpoint).read) rescue nil
+    @api ||= JSON.parse(open(site_endpoint).read) rescue nil
   end
 
   # Stats
