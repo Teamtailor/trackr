@@ -15,7 +15,7 @@ var _trackr_config={domain:"<%= @report.domain %>"};
   function loadTrackr() {
     window._sf_endpt=(new Date()).getTime();
     var e = document.createElement('script');
-    e.setAttribute('src',"//localhost:3000/trackr.js");
+    e.setAttribute('src',"//startuphack.herokuapp.com/trackr.js");
     document.body.appendChild(e);
   }
   var oldonload = window.onload;
