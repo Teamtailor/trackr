@@ -1,4 +1,5 @@
 require 'open-uri'
+require 'json'
 
 class Report
   ENDPOINT = Rails.env.production? ? "http://startuphack.herokuapp.com" : "http://localhost:3000"
@@ -14,11 +15,18 @@ class Report
   end
 
   def api
-    @api ||= open(site_endpoint) rescue false
+    JSON.parse(open(site_endpoint).read) rescue nil
+  end
+
+  # Stats
+  # --------------------------------------------------------
+
+  def online
+    api['online_right_now']
   end
 
   private
   def site_endpoint
-    ENDPOINT << "/api/sites/#{self.domain}"
+    "#{ENDPOINT}/api/sites/#{domain}"
   end
 end

@@ -3,7 +3,7 @@ require 'report'
 class ReportsController < ApplicationController
   def show
     @report = Report.new(params[:id])
-    return render(status: 404) unless @report.exist?
+    return render(nothing: true, status: 404) unless @report.exist?
   end
 
   def create
