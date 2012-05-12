@@ -8,3 +8,4 @@ $ ->
     if domain.length == 0
       evt.preventDefault()
       $('#domain').val('').focus()
+      $('#domain').tooltip({trigger: 'manual', placement: 'bottom', title: 'Please provide a domain name'}).tooltip('show')
