@@ -3,15 +3,17 @@
     <div class="row">
        <div class="span12">
            <header class="bigass">
-             <div class="inner">
                <h1>Trackr</h1>
-               <p>Easy realtime stats</p>
-               <%= form_tag reports_path do %>
-                 <%= text_field_tag "domain", nil, placeholder: "domain.com", required: :required %>
-                 <%= submit_tag "Start track'n", class: "start-tracking btn btn-primary btn-large" %>
-               <% end %>
-             </div>
            </header>
+        </div>
+        <div class="span6 offset3">
+            <div class="well">
+                <h3>Easy realtime stats.</h3>
+                <%= form_tag reports_path do %>
+                  <%= text_field_tag "domain", nil, placeholder: "domain.com", required: :required %>
+                  <%= submit_tag "Start track'n", class: "start-tracking btn btn-primary btn-large" %>
+                <% end %>
+            </div>
         </div>
     </div><!--/row-->
   </div><!--/content-->
