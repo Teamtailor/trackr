@@ -3,7 +3,7 @@
     <h1>Trackr</h1>
     <p>Easy realtime stats</p>
     <%= form_tag reports_path do %>
-      <%= text_field_tag "domain", nil, placeholder: "your.domain.com", required: :required %>
+      <%= text_field_tag "domain", nil, placeholder: "domain.com", required: :required %>
       <%= submit_tag "Start track'n", class: "start-tracking btn btn-primary btn-large" %>
     <% end %>
   </div>
