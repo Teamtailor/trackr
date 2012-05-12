@@ -7,6 +7,8 @@ header.bigass {
   h1 {
     font-size: 72px;
     line-height: 1.2;
+    text-shadow: 0px 1px 1px #5E1D2E;
+    filter: dropshadow(color=#5E1D2E, offx=0, offy=1);
   }
   #domain {
     font-size: 15px;
