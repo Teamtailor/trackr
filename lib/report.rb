@@ -11,7 +11,7 @@ class Report
   end
 
   def exist?
-    api || false
+    history.map(&:last).any?(&:nonzero?)
   end
 
   def api
