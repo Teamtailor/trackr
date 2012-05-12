@@ -26,7 +26,11 @@ class Report
   end
 
   def history
-    api['history']
+    api['history'].map{ |item| [item.first.to_i, item.last] }
+  end
+
+  def top_urls
+    api['top_urls']
   end
 
   private

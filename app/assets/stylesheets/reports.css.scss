@@ -6,6 +6,7 @@ $color: #BF3F5F;
 
 body {
   background: #DFDFDF;
+  padding-top: 10px;
 }
 
 header.bigass h1 {
@@ -25,4 +26,36 @@ h1 em {
   font-size: 180px;
   line-height: 0.8em;
   color: $color;
+}
+
+ul {
+    text-align: center;
+    margin: 0;
+    li {
+        list-style: none;
+        font-weight: bold;
+        font-size: 30px;
+        line-height: 35px;
+
+        span {
+            font-size: 18px;
+            display: inline-block;
+            margin-left: 15px;
+        }
+        &:nth-child(1){
+            color: #BF3F5F;
+        }
+        &:nth-child(2){
+            color: #CE4062;
+        }
+        &:nth-child(3){
+           color: #DB4468;
+        }
+        &:nth-child(4){
+            color: #ED476E;
+        }
+        &:nth-child(5){
+            color: #FF4F79;
+        }
+    }
 }
