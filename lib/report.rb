@@ -30,7 +30,7 @@ class Report
   end
 
   def top_urls
-    api['top_urls']
+    api['top_urls'][0,5].map{ |item| [item.first, item.last[0, 50]]  }
   end
 
   private
