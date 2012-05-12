@@ -2,3 +2,22 @@
     <%= @report.domain %>
 </h1>
 <p>Online right now: <%= @report.online %></p>
+
+<div id="chart"> </div>
+
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+    new Highcharts.Chart({
+      chart: { renderTo: 'chart' },
+      series: [{
+        // pointInterval: <%= 240.seconds * 1000 %>,
+        // pointStart: <%= 1.hour.ago.to_i * 1000 %>,
+        name: 'Online',
+        data: <%= @report.history[0,48].reverse.map(&:last) %>
+      }],
+      xAxis:{
+          categories: <%= raw @report.history[0,48].reverse.map(&:first).map{|i| Time.at(i).to_s(:time) } %>
+      }
+    });
+  });
+</script>

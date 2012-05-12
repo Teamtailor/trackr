@@ -25,6 +25,10 @@ class Report
     api['online_right_now']
   end
 
+  def history
+    api['history']
+  end
+
   private
   def site_endpoint
     "#{ENDPOINT}/api/sites/#{domain}"
