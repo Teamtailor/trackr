@@ -9,4 +9,8 @@ class ReportsController < ApplicationController
       render text: "No report :("
     end
   end
+
+  def create
+    redirect_to report_path(params[:domain])
+  end
 end
