@@ -1,0 +1,45 @@
+<div class="modal" id="getStarted">
+    <div class="modal-header">
+        <h3>Get tracking!</h3>
+    </div>
+    <div class="modal-body">
+        <% if params[:tryagain] %>
+            <p class="alert alert-error"><strong>Tracker script not detected!</strong> Deploy the script to your site, and wait a few minutes for us to track your visits.</p>
+        <% end %>
+        <p>Put this script before your closing <body> tag. Click "Ready" when installed!</p>
+        
+        <textarea style="width: 98%; height: 250px">
+&lt;script type="text/javascript">
+var _trackr_config={domain:"<%= @report.domain %>"};
+(function(){
+  function loadTrackr() {
+    window._sf_endpt=(new Date()).getTime();
+    var e = document.createElement('script');
+    e.setAttribute('src',"//localhost:3000/trackr.js");
+    document.body.appendChild(e);
+  }
+  var oldonload = window.onload;
+  window.onload = (typeof window.onload != 'function') ?
+     loadTrackr : function() { oldonload(); loadTrackr(); };
+})();
+&lt;/script>
+        </textarea>
+    </div>
+    <div class="modal-footer">
+        <a href="?tryagain=☂" class="btn btn-primary">I'm Ready!</a>
+    </div>
+</div>
+
+<script>
+    $(function(){
+        $("#getStarted").modal({
+          keyboard: false
+        }).on('hidden', function () {
+            $("#getStarted").show()
+        })
+        $("textarea").click(function(){
+            this.focus()
+            this.select()
+        })
+    })
+</script>
