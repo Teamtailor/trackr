@@ -1,13 +1,6 @@
-
 <h1><span id="online"><%= @report.online %></span><br/> Online on <em><%= @report.domain %></em> right now</h1>
 
 <div id="chart" data-since="<%= @report.history.first.first %>"> </div>
-
-<ul>
-    <% @report.top_urls.each do |url| %>
-        <li><%= url[0] %> <span><%= url[1] %></span></li>
-    <% end %>
-</ul>
 
 <script type="text/javascript" charset="utf-8">
   $(function () {
@@ -98,20 +91,5 @@
       }
 
     });
-  });
-
-  $(function(){
-      poller = function(){
-          $.getJSON('<%= report_top_urls_path(:report_id => @report.domain) %>', function(data){
-              var list = ""
-              $(data).each(function(){
-                  var url = this[0],
-                      count = this[1]
-                  list += "<li>" + url + " <span>" + count + "</span>" +  "</li>"
-              })
-              $("ul").html(list)
-          })
-      }
-      setInterval(poller, 2000)
   });
 </script>

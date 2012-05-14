@@ -11,11 +11,6 @@ class ReportsController < ApplicationController
     render json: [@report.history.select{ |h| h.first > params[:since].to_i }.first]
   end
 
-  def top_urls
-    @report = Report.new(params[:report_id])
-    render json: @report.top_urls #.select{ |h| h.first > params[:since].to_i }
-  end
-
   def create
     redirect_to report_path(params[:domain])
   end
