@@ -8,7 +8,7 @@ class ReportsController < ApplicationController
 
   def history
     @report = Report.new(params[:report_id])
-    render json: @report.history.select{ |h| h.first > params[:since].to_i }
+    render json: [@report.history.select{ |h| h.first > params[:since].to_i }.first]
   end
 
   def top_urls
